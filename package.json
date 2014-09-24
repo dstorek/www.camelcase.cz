@@ -1,0 +1,12 @@
+{
+  "name": "www.camelcase.cz",
+  "version": "0.0.1",
+  "description": "www.camelcase.cz site",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.0.0"
+  }
+}
