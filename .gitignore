@@ -6,3 +6,6 @@
 /*.iml
 ## Directory-based project format:
 .idea/
+
+#Covers node modules
+node_modules/
