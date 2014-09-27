@@ -1,0 +1,55 @@
+#welcome {
+  height: 300px;
+  background-color: #191919;
+  color: #fff;
+  .btn {
+    margin-top: 16px;
+  }
+  position: relative;
+  .welcome-message {
+    background-color: hsla(0,0,1%,0.4);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px 40px;
+    strong {
+      font-size: 1.5em;
+      text-transform: uppercase
+    }
+  }
+
+
+  @media (max-width: @screen-sm-max) {
+    background: #191919 url('../img/people_600x400.jpg') center center no-repeat;
+
+  }
+
+  @media (min-width: @screen-sm-min) {
+    height: 480px;
+    .container {
+      position: relative;
+    }
+    .welcome-message {
+      right: 20%;
+      bottom: auto;
+      strong {
+        display: block;
+      }
+    }
+  }
+
+  @media (min-width: @screen-md-min) {
+    height: 540px;
+    background: #191919 url('../img/people_600x400.jpg')
+    center center no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    .welcome-message {
+      right:50%;
+    }
+  }
+}
