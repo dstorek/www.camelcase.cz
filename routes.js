@@ -1,3 +1,8 @@
+'use strict';
+
+var createPass = require('./passkit/createPass.js');
+
+
 module.exports = function(app, passport) {
 
     app.get('/', function (req, res) {
@@ -23,6 +28,25 @@ module.exports = function(app, passport) {
         res.render('profile-facebook', {
             user: req.user // get the user out of session and pass to template
         });
+    });
+
+    // =====================================
+    // FACEBOOK ROUTES =====================
+    // =====================================
+    // route for facebook creating a new pass
+
+    app.post('/getpass', isLoggedIn, function (req, res) {
+        // res.render('profile-facebook', {
+        //     user: req.user // get the user out of session and pass to template
+        // });
+
+        // console.log(req.body);
+        // if (!req.body.email )
+        //      res.send(404);
+        // else
+        //      createPass.createPass(req, res, req.body.email, createPassCallback());
+
+        createPass.createPass(req, res);
     });
 
     // =====================================

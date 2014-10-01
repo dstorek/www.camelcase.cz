@@ -14,7 +14,7 @@ var userSchema = mongoose.Schema({
         email        : String,
         name         : String
     }
-});
+},{collection : 'users'});
 
 // methods ======================
 // generating a hash
