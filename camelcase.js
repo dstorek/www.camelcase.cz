@@ -1,3 +1,5 @@
+var https = require('https');
+var fs = require('fs');
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -17,6 +19,16 @@ var opts = {
             server: {
                     socketOptions: { keepAlive: 1 }
             }
+};
+
+var sslOptions = {
+    key: fs.readFileSync(__dirname + '/certificates/https_certificates/camel_ssl_key.key'),
+    cert: fs.readFileSync(__dirname + '/certificates/https_certificates/camel_ssl_cert.crt'),
+    ca: [
+        fs.readFileSync(__dirname + '/certificates/https_certificates/ca.pem'),
+        fs.readFileSync(__dirname + '/certificates/https_certificates/sub.class1.server.ca.pem')
+    ],
+    passphrase: credentials.ssl_passphrase
 };
 
 switch(app.get('env')) {
@@ -68,7 +80,14 @@ app.use(function(err, req, res, next){ console.error(err.stack);
 });
 
 // -------------- launch --------------------------------
-
+// https config
+https.createServer(sslOptions, app).listen(app.get('port'), function(){
+    console.log('Express started in ' + app.get('env') +
+    ' mode on port ' + app.get('port') + '.');
+});
+/*
+// http config
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 });
+*/
