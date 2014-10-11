@@ -1,6 +1,6 @@
 {
   "name": "www.camelcase.cz",
-  "version": "0.2",
+  "version": "0.3",
   "description": "www.camelcase.cz site",
   "main": "camelcase.js",
   "scripts": {

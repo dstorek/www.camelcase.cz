@@ -46,7 +46,7 @@ switch(app.get('env')) {
 require('./passport.js')(passport, env);
 
 // ------------------- set up express application ----------------
-app.set('port', (process.env.PORT || 1337));
+app.set('port', (process.env.PORT || 8008));
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -81,13 +81,13 @@ app.use(function(err, req, res, next){ console.error(err.stack);
 
 // -------------- launch --------------------------------
 // https config
+/*
 https.createServer(sslOptions, app).listen(app.get('port'), function(){
     console.log('Express started in ' + app.get('env') +
     ' mode on port ' + app.get('port') + '.');
 });
-/*
+*/
 // http config
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 });
-*/
