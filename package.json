@@ -1,10 +1,10 @@
 {
   "name": "www.camelcase.cz",
-  "version": "0.0.1",
+  "version": "0.2",
   "description": "www.camelcase.cz site",
-  "main": "index.js",
+  "main": "camelcase.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node camelcase.js"
   },
   "dependencies": {
     "bcrypt": "^0.8.0",
