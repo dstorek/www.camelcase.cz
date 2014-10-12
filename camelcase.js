@@ -1,11 +1,11 @@
 var https = require('https');
 var fs = require('fs');
 var express = require('express');
-var RedisStore = require('connect-redis')(express);
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 var redis = require('redis').createClient();
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var session = require('express-session');
 var exphbs = require('express3-handlebars');
 var flash = require('connect-flash');
 var morgan = require('morgan');
@@ -65,8 +65,10 @@ app.set('view engine', 'handlebars');
 
 // redis as a memory store
 app.use(session({
+        resave: false, // don't save session if unmodified
+        saveUninitialized: false, // don't create session until something stored
         secret : credentials.redis_passphrase,
-        store : RedisStore({ host: 'localhost', port: 6379, client: redis })
+        store : new RedisStore({ host: 'ws1.camelcase.cz', port: 6379, client: redis })
     }
 ));
 
