@@ -1,6 +1,8 @@
 var https = require('https');
 var fs = require('fs');
 var express = require('express');
+var RedisStore = require('connect-redis')(express);
+var redis = require('redis').createClient();
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -57,7 +59,17 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 // ------- required for passport -----------
-app.use(session({secret: credentials.cookieSecret.secret}));
+
+// Built in memory store
+// app.use(session({secret: credentials.cookieSecret.secret}));
+
+// redis as a memory store
+app.use(session({
+        secret : credentials.redis_passphrase,
+        store : RedisStore({ host: 'localhost', port: 6379, client: redis })
+    }
+));
+
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash());            // use connect-flash for flash messages stored in session
@@ -87,8 +99,8 @@ https.createServer(sslOptions, app).listen(app.get('port'), function(){
     ' mode on port ' + app.get('port') + '.');
 });
 */
-// http config
 
+// http config
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 });
