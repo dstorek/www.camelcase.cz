@@ -10,7 +10,7 @@ module.exports = function(app, passport) {
     });
 
     // -- start Testing barcode download TODO remove
-    app.post('/getpass/barcode', function (req, res) {
+    app.get('/getpass/barcode', function (req, res) {
         createPass.createPass(req, res);
     });
     // -- end Testing barcode download
