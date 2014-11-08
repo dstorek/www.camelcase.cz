@@ -145,7 +145,7 @@ var createPass = function(req, res){
     function dumpToBrowser(willSendThisPass) {
 
         res.setHeader('Content-disposition', 'attachment; filename=myPass.pkpass');
-        res.contentType('application/vdn.apple.pkpass');
+        res.contentType('application/vnd.apple.pkpass');
         res.write(willSendThisPass);
         res.end();
     }
