@@ -9,12 +9,6 @@ module.exports = function(app, passport) {
         res.render('home')
     });
 
-    // -- start Testing barcode download TODO remove
-    app.post('/getpass/barcode', function (req, res) {
-        createPass.createPass(req, res);
-    });
-    // -- end Testing barcode download
-
     app.get('/login', function (req, res) {
         // render the page and pass in any flash data if it exists
         res.render('login', {message: req.flash('loginMessage')});
